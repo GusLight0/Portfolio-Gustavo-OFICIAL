@@ -89,7 +89,8 @@ let targetCursorOutlineX = 0;
 let targetCursorOutlineY = 0;
 let currentCursorOutlineX = 0;
 let currentCursorOutlineY = 0;
-const easingFactor = 0.15; // Controla a suavidade do "lag" (0 a 1, menor = mais suave)
+const easingFactor = 0.3; // Aumentado para ser mais responsivo e menos "pesado"
+let dotScale = 1;
 
 // Verifica se os elementos existem (para evitar erros)
 if (cursorDot && cursorOutline) {
@@ -97,13 +98,8 @@ if (cursorDot && cursorOutline) {
         const posX = e.clientX;
         const posY = e.clientY;
 
-        // Atualiza variáveis CSS para o efeito de Spotlight no fundo
-        document.body.style.setProperty('--mouse-x', `${posX}px`);
-        document.body.style.setProperty('--mouse-y', `${posY}px`);
-
-        // Ponto segue instantaneamente
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
+        // Ponto segue instantaneamente usando transform para performance
+        cursorDot.style.transform = `translate3d(${posX}px, ${posY}px, 0) translate(-50%, -50%) scale(${dotScale})`;
 
         // Atualiza o alvo para o outline
         targetCursorOutlineX = posX;
@@ -116,9 +112,8 @@ if (cursorDot && cursorOutline) {
         currentCursorOutlineX += (targetCursorOutlineX - currentCursorOutlineX) * easingFactor;
         currentCursorOutlineY += (targetCursorOutlineY - currentCursorOutlineY) * easingFactor;
 
-        // Aplica a posição usando left/top para o outline
-        cursorOutline.style.left = `${currentCursorOutlineX}px`;
-        cursorOutline.style.top = `${currentCursorOutlineY}px`;
+        // Aplica transform para suavidade máxima
+        cursorOutline.style.transform = `translate3d(${currentCursorOutlineX}px, ${currentCursorOutlineY}px, 0) translate(-50%, -50%)`;
     }
 
     // Efeito de Hover em elementos interativos
@@ -127,13 +122,15 @@ if (cursorDot && cursorOutline) {
     interactiveElements.forEach(el => {
         el.addEventListener("mouseenter", () => {
             document.body.classList.add("hovering");
-            // Opcional: aumentar levemente o ponto
-            cursorDot.style.transform = "translate(-50%, -50%) scale(1.5)";
+            dotScale = 1.5;
+            // Força atualização imediata da escala
+            cursorDot.style.transform = `translate3d(${targetCursorOutlineX}px, ${targetCursorOutlineY}px, 0) translate(-50%, -50%) scale(${dotScale})`;
         });
         
         el.addEventListener("mouseleave", () => {
             document.body.classList.remove("hovering");
-            cursorDot.style.transform = "translate(-50%, -50%) scale(1)";
+            dotScale = 1;
+            cursorDot.style.transform = `translate3d(${targetCursorOutlineX}px, ${targetCursorOutlineY}px, 0) translate(-50%, -50%) scale(${dotScale})`;
         });
     });
     
@@ -429,27 +426,29 @@ particleSections.forEach(sectionId => {
     const section = document.getElementById(sectionId);
 
     if (section) {
-        // Cria o container
+        // Limpeza de segurança: remove container antigo antes de criar o novo
+        const oldContainer = section.querySelector('.particles-container');
+        if (oldContainer) oldContainer.remove();
+
         const particlesContainer = document.createElement('div');
         particlesContainer.className = 'particles-container';
         section.appendChild(particlesContainer);
 
-        const particleCount = 40; // Quantidade de partículas
+        const particleCount = 35; // Quantidade bem reduzida para elegância
 
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             
-            // Configurações aleatórias para cada partícula
-            const left = Math.random() * 100; // Posição horizontal
-            const delay = Math.random() * 5; // Atraso na animação
-            const duration = Math.random() * 5 + 5; // Duração (5s a 10s)
-            const opacity = Math.random() * 0.5 + 0.1; // Opacidade variável
-            const drift = (Math.random() - 0.5) * 150 + 'px'; // Desvio lateral
+            const left = Math.random() * 100;
+            const delay = Math.random() * 30; // Atraso maior para elas já começarem bem espalhadas
+            const duration = 25 + Math.random() * 15; // Velocidade constante e lenta (25s a 40s)
+            const opacity = Math.random() * 0.2 + 0.05; // Opacidade muito sutil
+            const drift = (Math.random() - 0.5) * 80 + 'px'; // Desvio lateral mais contido
 
             particle.style.left = `${left}%`;
             particle.style.animationDuration = `${duration}s`;
-            particle.style.animationDelay = `-${delay}s`; // Delay negativo para já começarem espalhadas
+            particle.style.animationDelay = `-${delay}s`; 
             particle.style.setProperty('--opacity', opacity);
             particle.style.setProperty('--drift', drift);
 
