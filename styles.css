@@ -327,15 +327,6 @@ header.site-header {
     letter-spacing: 0.01em
 }
 
-.brand-accent {
-    background: linear-gradient(90deg, var(--green-mid), var(--green-neon));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-weight: 900;
-    font-size: 1.05rem
-}
-
 /* Nav */
 nav.nav {
     display: flex;
@@ -890,6 +881,10 @@ section[id] {
     height: 32px;
 }
 
+.skills-grid img.icon-invert {
+    filter: invert(1) brightness(2);
+}
+
 .skills-grid .skill-soft {
     background: var(--green-dark);
     color: var(--green-mid);
@@ -1306,6 +1301,10 @@ section[id] {
 
 .project-card:hover::before {
     opacity: 1;
+}
+
+.green-letter {
+    color: var(--green-neon);
 }
 
 /* Efeito de Glare (Brilho Especular) estilo Apple TV */
@@ -2187,10 +2186,6 @@ footer .container {
         padding: 4rem 1rem;
     }
 
-    .brand-accent {
-        font-size: 1rem;
-    }
-
     /* Ajustes finos nos textos dos Projetos para não ficarem enormes */
     .project-content h3 {
         font-size: 1.1rem;
@@ -2226,19 +2221,6 @@ header.site-header {
     font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-}
-
-.brand-accent {
-    border: 1px solid rgba(0, 255, 138, 0.18);
-    border-radius: 999px;
-    background: rgba(0, 255, 138, 0.08);
-    -webkit-background-clip: initial;
-    background-clip: initial;
-    color: var(--green-neon);
-    padding: 0.18rem 0.55rem;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
 }
 
 nav.nav {
@@ -2454,11 +2436,6 @@ nav.nav a.active-link {
     .brand-line {
         font-size: 0.8rem;
         letter-spacing: 0.06em;
-    }
-
-    .brand-accent {
-        padding: 0.14rem 0.45rem;
-        font-size: 0.66rem;
     }
 
     nav.nav {
