@@ -148,6 +148,35 @@ if (cursorDot && cursorOutline) {
 // Menu Mobile
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const nav = document.querySelector('.nav');
+const siteHeader = document.querySelector('.site-header');
+const navLinks = document.querySelectorAll('.nav a[href^="#"]');
+
+function getHeaderOffset() {
+    return (siteHeader ? siteHeader.offsetHeight : 64) + 12;
+}
+
+function setActiveNavLink(hash) {
+    navLinks.forEach(link => {
+        link.classList.toggle('active-link', link.getAttribute('href') === hash);
+    });
+}
+
+function scrollToSection(hash) {
+    const target = document.querySelector(hash);
+    if (!target) return;
+
+    const offset = -getHeaderOffset();
+
+    if (typeof lenis !== 'undefined' && lenis && typeof lenis.scrollTo === 'function') {
+        lenis.scrollTo(target, { offset });
+    } else {
+        const top = target.getBoundingClientRect().top + window.scrollY + offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+    }
+
+    history.replaceState(null, '', hash);
+    setActiveNavLink(hash);
+}
 
 if (mobileMenuBtn && nav) {
     // Abrir/Fechar menu ao clicar no botão
@@ -158,14 +187,23 @@ if (mobileMenuBtn && nav) {
         document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
     });
 
-    // Fechar menu ao clicar em um link
-    document.querySelectorAll('.nav a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenuBtn.classList.remove('active');
-            nav.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            // Lenis precisa saber que voltamos a rolar
-            lenis.start();
+    // Navegar até a seção e fechar menu ao clicar em um link
+    navLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+            const hash = link.getAttribute('href');
+            if (hash && hash.startsWith('#')) {
+                event.preventDefault();
+
+                mobileMenuBtn.classList.remove('active');
+                nav.classList.remove('active');
+                document.body.style.overflow = 'auto';
+
+                if (typeof lenis !== 'undefined' && lenis && typeof lenis.start === 'function') {
+                    lenis.start();
+                }
+
+                requestAnimationFrame(() => scrollToSection(hash));
+            }
         });
     });
     
@@ -204,20 +242,22 @@ const projectCards = document.querySelectorAll('.project-card');
 if (filterBtns.length > 0 && projectCards.length > 0) {
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+            const wasActive = btn.classList.contains('active');
+            const filterValue = wasActive ? null : btn.getAttribute('data-filter');
+
             // Remove a classe active de todos os botões e desmarca ARIA
             filterBtns.forEach(b => {
                 b.classList.remove('active');
                 b.setAttribute('aria-pressed', 'false');
             });
-            // Adiciona a classe active ao botão clicado e marca ARIA
-            btn.classList.add('active');
-            btn.setAttribute('aria-pressed', 'true');
+
+            if (!wasActive) {
+                btn.classList.add('active');
+                btn.setAttribute('aria-pressed', 'true');
+            }
 
             // ensure the clicked button is visible on small screens
             btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-
-            // captura o filtro escolhido antes de usar dentro do timeout
-            const filterValue = btn.getAttribute('data-filter');
 
             // Reset scroll da galeria no mobile para o início
             const gallery = document.querySelector('.project-gallery');
@@ -228,8 +268,9 @@ if (filterBtns.length > 0 && projectCards.length > 0) {
             // Lógica de Filtro "Apple-like" (Rápida e Fluida)
             projectCards.forEach(card => {
                 const category = card.getAttribute('data-category');
+                const shouldShow = !filterValue || category === filterValue;
                 
-                if (filterValue === 'all' || category === filterValue) {
+                if (shouldShow) {
                     // Se for mostrar:
                     if (card.classList.contains('hide')) {
                         // Se estava escondido, remove hide e prepara animação de entrada
@@ -262,12 +303,9 @@ if (filterBtns.length > 0 && projectCards.length > 0) {
             const countSpan = btn.querySelector('.filter-count');
             
             if (countSpan) {
-                let count = 0;
-                if (filterValue === 'all') {
-                    count = projectCards.length;
-                } else {
-                    count = Array.from(projectCards).filter(card => card.getAttribute('data-category') === filterValue).length;
-                }
+                const count = Array.from(projectCards)
+                    .filter(card => card.getAttribute('data-category') === filterValue)
+                    .length;
                 countSpan.textContent = count;
             }
         });
@@ -275,20 +313,6 @@ if (filterBtns.length > 0 && projectCards.length > 0) {
     
     // Chama a função ao carregar a página
     updateFilterCounts();
-
-    // todo: tornar clique no card inteiro direcionar para o link 'Ver Online'
-    projectCards.forEach(card => {
-        const primary = card.querySelector('.btn-project.primary');
-        if (primary) {
-            card.style.cursor = 'pointer';
-            card.addEventListener('click', e => {
-                // se o clique não aconteceu em um link dentro do card, abre o principal
-                if (!e.target.closest('a')) {
-                    window.open(primary.href, '_blank');
-                }
-            });
-        }
-    });
 
     // --- EFEITO TILT 3D (APPLE TV STYLE) ---
     // Apenas para dispositivos com mouse (desktop) para economizar bateria no mobile
@@ -492,35 +516,33 @@ if (certCards.length) {
 }
 
 // Active Scroll Spy (Menu destaca conforme rola a página)
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav a');
+const sections = Array.from(document.querySelectorAll('section[id]'));
 
-const scrollObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Remove a classe ativa de todos os links
-            navLinks.forEach(link => link.classList.remove('active-link'));
-            
-            // Pega o ID da seção que está na tela
-            const id = entry.target.getAttribute('id');
-            
-            // Seleciona o link correspondente a esse ID
-            const activeLink = document.querySelector(`.nav a[href="#${id}"]`);
-            
-            // Adiciona a classe ativa
-            if (activeLink) {
-                activeLink.classList.add('active-link');
-            }
+function updateActiveSection() {
+    const marker = window.scrollY + getHeaderOffset() + Math.min(window.innerHeight * 0.22, 180);
+    let currentSection = sections[0];
+
+    sections.forEach(section => {
+        if (section.offsetTop <= marker) {
+            currentSection = section;
         }
     });
-}, {
-    threshold: 0.3, // Aciona quando 30% da seção estiver visível
-    rootMargin: "-10% 0px -10% 0px" // Ajuste fino para ativar um pouco antes do centro
-});
 
-sections.forEach(section => {
-    scrollObserver.observe(section);
+    if (currentSection) {
+        setActiveNavLink(`#${currentSection.id}`);
+    }
+}
+
+window.addEventListener('scroll', updateActiveSection, { passive: true });
+window.addEventListener('resize', updateActiveSection);
+window.addEventListener('load', () => {
+    if (window.location.hash && document.querySelector(window.location.hash)) {
+        setTimeout(() => scrollToSection(window.location.hash), 250);
+    } else {
+        updateActiveSection();
+    }
 });
+updateActiveSection();
 
 // Carrossel de Certificados com Setas
 const carouselWrapper = document.querySelector('.carousel-wrapper');

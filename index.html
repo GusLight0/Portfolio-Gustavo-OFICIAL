@@ -6,9 +6,9 @@
     <!-- A fonte Poppins já é importada no CSS, então esta linha não é estritamente necessária, mas não causa problemas. -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <meta name="theme-color" content="#071028">
-    <title>Portfólio Profissional | Dev Gustavo</title>
+    <title>Portfólio Profissional | Dev Gus</title>
      <!-- Favicon SVG: Círculo escuro com "DEV" em verde neon -->
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23050706'/%3E%3Ctext x='50' y='65' font-family='sans-serif' font-weight='900' font-size='40' text-anchor='middle' fill='%2300ff8a'%3EDEV%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+      <link rel="shortcut icon" href="./assets/img/logo-site.png" type="image/x-icon">
     <link rel="stylesheet" href="./styles.css">
     <meta name="description" content="Portfólio de Gustavo, Desenvolvedor focado em soluções inovadoras e resultados reais.">
 </head>
@@ -44,6 +44,7 @@
             <nav class="nav">
                 <a href="#home">Início</a>
                 <a href="#about">Sobre</a>
+                <a href="#services">Serviços</a>
                 <a href="#projects">Projetos</a>
                 <a href="#certificates">Certificados</a>
                 <a href="#contact">Contato</a>
@@ -130,19 +131,54 @@
     <!-- SEÇÃO OPCIONAL: SERVIÇOS -->
     <section id="services">
         <div class="container">
-            <h2 class="reveal">O que eu ofereço</h2>
+            <div class="services-heading reveal">
+                <h2>O que eu ofereço</h2>
+                <p>Entregas visuais e digitais para marcas, profissionais e eventos que precisam parecer mais organizados, confiáveis e prontos para vender.</p>
+            </div>
             <div class="services-grid">
                 <div class="service-card reveal">
-                    <h3>Landing Pages</h3>
-                    <p>Sites de uma página, simples e otimizados para conversão e performance.</p>
+                    <div class="service-image">
+                        <img src="./assets/img/service-social-media.jpg" alt="Visual premium representando design para social media" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <span>01</span>
+                        <h3>Design para social media</h3>
+                        <p>Artes para posts, anúncios e divulgação com visual mais profissional, identidade consistente e foco em chamar atenção rápido.</p>
+                        <a class="service-cta" href="https://wa.me/5598991856123?text=Ol%C3%A1%2C%20Gustavo.%20Quero%20pedir%20um%20servi%C3%A7o%20de%20design%20para%20social%20media." target="_blank" rel="noopener">Pedir serviço</a>
+                    </div>
                 </div>
                 <div class="service-card reveal">
-                    <h3>Identidade Visual</h3>
-                    <p>Criação ou modernização da estética visual de sua marca para redes sociais e web.</p>
+                    <div class="service-image">
+                        <img src="./assets/img/service-landing-pages.jpg" alt="Visual premium representando criação de landing pages" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <span>02</span>
+                        <h3>Landing pages</h3>
+                        <p>Páginas diretas para apresentar uma oferta, explicar valor, destacar diferenciais e conduzir o visitante para o contato.</p>
+                        <a class="service-cta" href="https://wa.me/5598991856123?text=Ol%C3%A1%2C%20Gustavo.%20Quero%20pedir%20uma%20landing%20page." target="_blank" rel="noopener">Pedir serviço</a>
+                    </div>
                 </div>
                 <div class="service-card reveal">
-                    <h3>Portfólio</h3>
-                    <p>Criação de portfólio profissional para exibir seus projetos e habilidades de forma atrativa.</p>
+                    <div class="service-image">
+                        <img src="./assets/img/service-forms.jpg" alt="Visual premium representando formulários digitais" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <span>03</span>
+                        <h3>Formulários</h3>
+                        <p>Formulários de contato, captação, briefing e solicitação de serviços com boa aparência, clareza e experiência simples.</p>
+                        <a class="service-cta" href="https://wa.me/5598991856123?text=Ol%C3%A1%2C%20Gustavo.%20Quero%20pedir%20um%20formul%C3%A1rio%20digital." target="_blank" rel="noopener">Pedir serviço</a>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-image">
+                        <img src="./assets/img/service-invitations.jpg" alt="Visual premium representando convites digitais" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <span>04</span>
+                        <h3>Convites digitais</h3>
+                        <p>Convites modernos para eventos, aniversários e ocasiões especiais, com visual personalizado e apresentação marcante.</p>
+                        <a class="service-cta" href="https://wa.me/5598991856123?text=Ol%C3%A1%2C%20Gustavo.%20Quero%20pedir%20um%20convite%20digital." target="_blank" rel="noopener">Pedir serviço</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -160,29 +196,28 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
                 </div>
                 <div class="project-filters">
-                    <button class="filter-btn active" data-filter="all" aria-pressed="true">Todos <span class="filter-count">0</span></button>
-                    <button class="filter-btn" data-filter="apps-reais" aria-pressed="false">Apps Reais <span class="filter-count">0</span></button>
-                    <button class="filter-btn" data-filter="apps-training" aria-pressed="false">Apps Training <span class="filter-count">0</span></button>
-                    <button class="filter-btn" data-filter="game-others" aria-pressed="false">Games/Others <span class="filter-count">0</span></button>
+                    <button class="filter-btn" data-filter="real" aria-pressed="false">Projetos reais <span class="filter-count">0</span></button>
+                    <button class="filter-btn" data-filter="training" aria-pressed="false">Acadêmicos <span class="filter-count">0</span></button>
                 </div>
             </div>
 
             <div class="project-gallery">
                 
                 <!-- Projeto 1 -->
-                <article class="project-card reveal" data-category="apps-reais">
+                <article class="project-card reveal" data-category="real">
                     <div class="project-image">
                         <img src="./assets/img/alg.png" alt="Preview do Projeto 1 (AlgDivulga+)" loading="lazy">
                     </div>
                     <div class="project-content">
                         <h3>ALGdivulga+</h3>
-                        <p>Site criado para oferecer serviços de design e social media para uma conta do insta @alg.divulga.</p>
+                        <p>Landing page criada para apresentar serviços de design e social media com clareza, credibilidade e foco em conversão.</p>
                         <div class="project-tags">
                             <span>HTML5</span>
                             <span>CSS3</span>
                             <span>JavaScript</span>
                             <span>Git</span>
                             <span>GitHub</span>
+                            <span>Netlify</span>
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/GusLight0/algdivulga" target="_blank" class="btn-project outline">
@@ -198,19 +233,20 @@
                 </article>
 
                 <!-- Projeto 2 -->
-                <article class="project-card reveal" data-category="apps-training">
+                <article class="project-card reveal" data-category="training">
                     <div class="project-image">
                         <img src="./assets/img/ass META.png" alt="Preview do Projeto 2 (Assistente de Meta)" loading="lazy">
                     </div>
                     <div class="project-content">
                         <h3>Assistente de Meta</h3>
-                        <p>Um assistente gemini IA que ajuda em táticas de games, realizado pelo curso da ROCKETSEAT, criado para fins acadêmicos e conhecimento na área de programação.</p>
+                        <p>Interface acadêmica com IA generativa para orientar jogadores com estratégias, builds e respostas contextualizadas.</p>
                         <div class="project-tags">
                             <span>HTML5</span>
                             <span>CSS3</span>
                             <span>JavaScript</span>
                             <span>Git</span>
                             <span>GitHub</span>
+                            <span>Netlify</span>
                             <span>Gemini AI</span>
                         </div>
                         <div class="project-links">
@@ -226,25 +262,146 @@
                     </div>
                 </article>
 
-                <article class="project-card reveal" data-category="game-others">
+                <article class="project-card reveal" data-category="training">
                     <div class="project-image">
                         <img src="./assets/img/calcgus.png" alt="Preview do Projeto 3 ( Calculadora )" loading="lazy">
                     </div>
                     <div class="project-content">
                         <h3>Calculadora</h3>
-                        <p>Calculadora com javascript para aprimoramento das tecnicas com js, criado para fins acadêmicos e conhecimento na área de programação.</p>
+                        <p>Aplicação funcional desenvolvida para consolidar lógica JavaScript, eventos de interface e estrutura visual responsiva.</p>
                         <div class="project-tags">
                             <span>HTML5</span>
                             <span>CSS3</span>
                             <span>JavaScript</span>
+                            <span>Netlify</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://calcgus.netlify.app/" target="_blank" class="btn-project outline">
+                            <a href="https://github.com/GusLight0/calcgus" target="_blank" class="btn-project outline">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                                 Código
                             </a>
-                            <a href="https://github.com/GusLight0/calcgus" target="_blank" class="btn-project primary">
-                                <svg xmlns="https://calcgus.netlify.app/" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            <a href="https://calcgus.netlify.app/" target="_blank" class="btn-project primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                Ver Online
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Projeto 4 -->
+                <article class="project-card reveal" data-category="real">
+                    <div class="project-image">
+                        <img src="./assets/img/projeto-3.png" alt="Preview do Projeto 4 (SEORF)" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <h3>SEORF</h3>
+                        <p>Projeto desenvolvido para venda de acessórios, em presença digital e apresentação profissional da marca.</p>
+                        <div class="project-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>Git</span>
+                            <span>GitHub</span>
+                            <span>Netlify</span>
+                            <span>Codex IA</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/GusLight0/seorf" target="_blank" class="btn-project outline">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                                Código
+                            </a>
+                            <a href="https://seorf.netlify.app/" target="_blank" class="btn-project primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                Ver Online
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Projeto 5 -->
+                <article class="project-card reveal" data-category="real">
+                    <div class="project-image">
+                        <img src="./assets/img/projeto-1.png" alt="Preview do Projeto 5 (VELARIS CLUB)" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <h3>VELARIS CLUB</h3>
+                        <p>Plataforma digital de venda de acessórios, desenvolvida para transmitir exclusividade e sofisticação através de uma experiência visual moderna.</p>
+                        <div class="project-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>Git</span>
+                            <span>GitHub</span>
+                            <span>Netlify</span>
+                            <span>Codex IA</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/GusLight0/vilaris.club" target="_blank" class="btn-project outline">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                                Código
+                            </a>
+                            <a href="https://velarisclub.netlify.app/" target="_blank" class="btn-project primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                Ver Online
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Projeto 6 -->
+                <article class="project-card reveal" data-category="real">
+                    <div class="project-image">
+                        <img src="./assets/img/projeto-2.png" alt="Preview do Projeto 6 (MKGRIFES)" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <h3>MKGRIFES</h3>
+                        <p>Loja virtual de roupas criada com foco em identidade visual forte, catálogo organizado e experiência de compra intuitiva.</p>
+                        <div class="project-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>Git</span>
+                            <span>GitHub</span>
+                            <span>Netlify</span>
+                            <span>Codex IA</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/GusLight0/mkgrifs" target="_blank" class="btn-project outline">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                                Código
+                            </a>
+                            <a href="https://mkgrifes.netlify.app/" target="_blank" class="btn-project primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                Ver Online
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Projeto 7 -->
+                <article class="project-card reveal" data-category="real">
+                    <div class="project-image">
+                        <img src="./assets/img/projeto-4.png" alt="Preview do Projeto 7 (ALVORADA MOTOS)" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <h3>ALVORADA MOTOS</h3>
+                        <p>Desenvolvimento de uma plataforma web para recebimento de denúncias internas, focada em confidencialidade, usabilidade e organização das informações para o setor de Recursos Humanos.</p>
+                        <div class="project-tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>Git</span>
+                            <span>GitHub</span>
+                            <span>Netlify</span>
+                            <span>Codex IA</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/GusLight0/alvorada-denuncias" target="_blank" class="btn-project outline">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                                Código
+                            </a>
+                            <a href="https://denunciaform.netlify.app/" target="_blank" class="btn-project primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                                 Ver Online
                             </a>
                         </div>
