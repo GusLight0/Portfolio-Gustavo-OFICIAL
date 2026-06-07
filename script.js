@@ -117,7 +117,7 @@ if (cursorDot && cursorOutline) {
     }
 
     // Efeito de Hover em elementos interativos
-    const interactiveElements = document.querySelectorAll("a, button, .project-card, input, textarea, .filter-btn");
+    const interactiveElements = document.querySelectorAll("a, button, .project-card, input, textarea, .filter-btn, .skill-chip, .hero-photo-frame");
     
     interactiveElements.forEach(el => {
         el.addEventListener("mouseenter", () => {
@@ -238,81 +238,85 @@ revealElements.forEach(el => revealObserver.observe(el));
 // Filtro de Projetos
 const filterBtns = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
+const filterToggle = document.querySelector('.filter-toggle');
+const projectControls = document.querySelector('.project-controls');
 
 if (filterBtns.length > 0 && projectCards.length > 0) {
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const wasActive = btn.classList.contains('active');
-            const filterValue = wasActive ? null : btn.getAttribute('data-filter');
+    const setFilter = (btn) => {
+        const wasActive = btn.classList.contains('active');
+        const nextFilter = wasActive ? '' : (btn.getAttribute('data-filter') || '');
 
-            // Remove a classe active de todos os botões e desmarca ARIA
-            filterBtns.forEach(b => {
-                b.classList.remove('active');
-                b.setAttribute('aria-pressed', 'false');
-            });
-
-            if (!wasActive) {
-                btn.classList.add('active');
-                btn.setAttribute('aria-pressed', 'true');
-            }
-
-            // ensure the clicked button is visible on small screens
-            btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-
-            // Reset scroll da galeria no mobile para o início
-            const gallery = document.querySelector('.project-gallery');
-            if (gallery) {
-                gallery.scrollTo({ left: 0, behavior: 'smooth' });
-            }
-
-            // Lógica de Filtro "Apple-like" (Rápida e Fluida)
-            projectCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                const shouldShow = !filterValue || category === filterValue;
-                
-                if (shouldShow) {
-                    // Se for mostrar:
-                    if (card.classList.contains('hide')) {
-                        // Se estava escondido, remove hide e prepara animação de entrada
-                        card.classList.remove('hide');
-                        card.classList.add('anim-out'); // Começa pequeno/invisível
-                        
-                        // Força reflow para o navegador processar a mudança de display
-                        void card.offsetWidth; 
-                        
-                        // Remove anim-out para animar para o estado normal
-                        requestAnimationFrame(() => {
-                            card.classList.remove('anim-out');
-                        });
-                    } else {
-                        // Se já estava visível, garante que não tenha anim-out
-                        card.classList.remove('anim-out');
-                    }
-                } else {
-                    // Se for esconder:
-                    card.classList.add('hide');
-                }
-            });
+        filterBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
         });
+
+        if (wasActive) {
+            filterBtns[0]?.classList.add('active');
+            filterBtns[0]?.setAttribute('aria-pressed', 'true');
+        } else {
+            btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
+        }
+
+        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+
+        const gallery = document.querySelector('.project-gallery');
+        if (gallery) {
+            gallery.scrollTo({ left: 0, behavior: 'smooth' });
+        }
+
+        projectCards.forEach(card => {
+            const category = card.getAttribute('data-category') || '';
+            const shouldShow = nextFilter === '' || category === nextFilter;
+
+            card.classList.toggle('hide', !shouldShow);
+            if (shouldShow) {
+                card.classList.add('is-entering');
+                void card.offsetWidth;
+                requestAnimationFrame(() => card.classList.remove('is-entering'));
+            } else {
+                card.classList.remove('is-entering');
+            }
+        });
+
+        if (window.matchMedia('(max-width: 720px)').matches && projectControls) {
+            projectControls.dataset.open = 'false';
+            if (filterToggle) {
+                filterToggle.setAttribute('aria-expanded', 'false');
+            }
+        }
+    };
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => setFilter(btn));
     });
 
-    // Atualizar contadores de projetos
     function updateFilterCounts() {
         filterBtns.forEach(btn => {
-            const filterValue = btn.getAttribute('data-filter');
+            const filterValue = btn.getAttribute('data-filter') || '';
             const countSpan = btn.querySelector('.filter-count');
-            
+
             if (countSpan) {
-                const count = Array.from(projectCards)
-                    .filter(card => card.getAttribute('data-category') === filterValue)
-                    .length;
+                const count = filterValue === ''
+                    ? projectCards.length
+                    : Array.from(projectCards)
+                        .filter(card => card.getAttribute('data-category') === filterValue)
+                        .length;
                 countSpan.textContent = count;
             }
         });
     }
     
-    // Chama a função ao carregar a página
     updateFilterCounts();
+
+    if (filterToggle && projectControls) {
+        filterToggle.addEventListener('click', () => {
+            const willOpen = projectControls.dataset.open !== 'true';
+            projectControls.dataset.open = String(willOpen);
+            filterToggle.setAttribute('aria-expanded', String(willOpen));
+        });
+    }
 
     // --- EFEITO TILT 3D (APPLE TV STYLE) ---
     // Apenas para dispositivos com mouse (desktop) para economizar bateria no mobile
@@ -407,38 +411,43 @@ if (contactForm) {
     });
 }
 
-// Efeito de Digitação (Typewriter) para o Nome
+// Efeito de Digitação para as especialidades do hero
 function initTypewriter() {
     const typewriterElement = document.getElementById('typewriter-text');
 
     if (typewriterElement) {
-        const text1 = "GUSTAVO ";
-        const text2 = "DEV";
-        let i = 0;
-        let j = 0;
+        const words = ['Desenvolvedor Front-End', 'Design Gráfico'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
 
-        // Limpa o conteúdo inicial para garantir que comece do zero
-        typewriterElement.innerHTML = "";
+        typewriterElement.textContent = "";
 
         function type() {
-            if (i < text1.length) {
-                typewriterElement.innerHTML += text1.charAt(i);
-                i++;
-                setTimeout(type, 100);
-            } else if (j < text2.length) {
-                let strong = typewriterElement.querySelector('strong');
-                if (!strong) {
-                    strong = document.createElement('strong');
-                    typewriterElement.appendChild(strong);
-                }
-                strong.innerHTML += text2.charAt(j);
-                j++;
-                setTimeout(type, 100);
+            const currentWord = words[wordIndex];
+            let delay = isDeleting ? 70 : 95;
+
+            if (isDeleting) {
+                charIndex -= 1;
+            } else {
+                charIndex += 1;
             }
-            
-            // Atualiza o atributo data-text para o efeito de glitch CSS funcionar
-            typewriterElement.setAttribute('data-text', typewriterElement.innerText);
+
+            typewriterElement.textContent = currentWord.slice(0, Math.max(charIndex, 0));
+            typewriterElement.setAttribute('data-text', typewriterElement.textContent);
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                isDeleting = true;
+                delay = 1600;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                delay = 500;
+            }
+
+            setTimeout(type, delay);
         }
+
         type();
     }
 }
@@ -652,99 +661,4 @@ if (mobileGallery) {
 }
 
 // --- PARTÍCULAS CONECTADAS (PLEXUS EFFECT) ---
-const magneticCanvas = document.getElementById('magnetic-particles');
-let particlesArray = [];
-let handleParticles; // Declara a função para que possa ser chamada no loop de animação
-
-if (magneticCanvas) {
-    const ctx = magneticCanvas.getContext('2d');
-    
-    function resizeCanvas() {
-        magneticCanvas.width = window.innerWidth;
-        magneticCanvas.height = window.innerHeight;
-        initParticles(); // Recria as partículas para o novo tamanho
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    class Particle {
-        constructor() {
-            this.x = Math.random() * magneticCanvas.width;
-            this.y = Math.random() * magneticCanvas.height;
-            this.size = Math.random() * 1.5 + 1; // Partículas menores e mais sutis
-            this.vx = (Math.random() - 0.5) * 0.3; // Velocidade de flutuação lenta
-            this.vy = (Math.random() - 0.5) * 0.3;
-            this.color = `rgba(0, 255, 138, ${Math.random() * 0.6 + 0.2})`; // Opacidade variada
-        }
-
-        draw() {
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-        
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
-
-            // Efeito de "loop" nas bordas
-            if (this.x < 0) this.x = magneticCanvas.width;
-            if (this.x > magneticCanvas.width) this.x = 0;
-            if (this.y < 0) this.y = magneticCanvas.height;
-            if (this.y > magneticCanvas.height) this.y = 0;
-
-            // Interação de repulsão com o mouse
-            const dx = this.x - targetCursorOutlineX;
-            const dy = this.y - targetCursorOutlineY;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            const repulsionRadius = 80; // Raio de repulsão
-
-            if (distance < repulsionRadius) {
-                const force = (repulsionRadius - distance) / repulsionRadius;
-                const angle = Math.atan2(dy, dx);
-                this.x += Math.cos(angle) * force * 1.5; // Empurrão suave
-                this.y += Math.sin(angle) * force * 1.5;
-            }
-        }
-    }
-
-    function initParticles() {
-        particlesArray = [];
-        const numberOfParticles = Math.floor((magneticCanvas.width * magneticCanvas.height) / 20000); // Densidade ajustada
-        for (let i = 0; i < numberOfParticles; i++) {
-            particlesArray.push(new Particle());
-        }
-    }
-
-    handleParticles = function() {
-        ctx.clearRect(0, 0, magneticCanvas.width, magneticCanvas.height);
-        
-        // Desenha linhas entre partículas próximas
-        for (let i = 0; i < particlesArray.length; i++) {
-            for (let j = i; j < particlesArray.length; j++) {
-                const dx = particlesArray[i].x - particlesArray[j].x;
-                const dy = particlesArray[i].y - particlesArray[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                const connectionRadius = 120;
-
-                if (distance < connectionRadius) {
-                    ctx.beginPath();
-                    ctx.strokeStyle = `rgba(0, 255, 138, ${1 - distance / connectionRadius})`; // Linha some com a distância
-                    ctx.lineWidth = 0.4;
-                    ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-                    ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
-                    ctx.stroke();
-                }
-            }
-        }
-
-        // Atualiza e desenha cada partícula
-        particlesArray.forEach(p => {
-            p.update();
-            p.draw();
-        });
-    }
-
-    initParticles(); // Primeira inicialização
-}
+// Efeito removido da seção inicial para manter apenas as partículas normais de fundo.

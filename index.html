@@ -54,41 +54,72 @@
     <!-- SEÇÃO 1: INÍCIO (HOME/HERO) -->
     <main>
         <section id="home">
-            <canvas id="magnetic-particles"></canvas>
-            <div class="floating-icons" aria-hidden="true">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 Icon" class="icon-float" id="icon-html">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 Icon" class="icon-float" id="icon-css">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript Icon" class="icon-float" id="icon-js">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git Icon" class="icon-float" id="icon-git">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma Icon" class="icon-float" id="icon-figma">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub Icon" class="icon-float" id="icon-github">
-            </div>
             <div class="hero-card reveal">
-                <div class="hero-left">
-                    <div class="hero-avatar">
-                        <img src="./assets/img/logo-site.png" alt="Gustavo Dev">
-                        <div class="avatar-ring"></div>
-                    </div>
-                    <div class="hero-mini-skills">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" title="HTML5">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" title="CSS3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" title="Git">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" title="Figma">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" title="GitHub" class="icon-invert">
-                    </div>
-                </div>
-                <div class="hero-right">
-                    <span class="role">Desenvolvedor · Experiências Imersivas</span>
+                <div class="hero-copy">
+                    <span class="hero-kicker">Portfólio profissional · Web</span>
                     <h1 class="hero-name">
-                        <span id="typewriter-text"></span><span class="typewriter-cursor">|</span>
+                        Gustavo <strong>Dev</strong>
                     </h1>
                     <p class="hero-lead">
                         Sou estudante de programação e desenvolvimento web. Com apenas 16 anos, já domino diversas linguagens e foco em criar experiências digitais únicas.
                     </p>
+                    <div class="hero-type-line" aria-live="polite">
+                        <span class="typewriter-shell">
+                            <span id="typewriter-text"></span><span class="typewriter-cursor">|</span>
+                        </span>
+                    </div>
                     <div class="ctas">
-                        <a class="btn primary" href="#projects">Ver projetos</a>
-                        <a class="btn outline" href="#contact">Contato</a>
+                        <a class="btn primary" href="#projects">
+                            Ver projetos
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+                        </a>
+                        <a class="btn outline" href="#contact">
+                            Contato
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"></path><path d="m22 6-10 7L2 6"></path></svg>
+                        </a>
+                    </div>
+                    <div class="hero-proof" aria-label="Resumo profissional">
+                        <span><strong>16</strong> anos</span>
+                        <span><strong>Full</strong> foco em web</span>
+                        <span><strong>Design</strong> com propósito</span>
+                    </div>
+                </div>
+
+                <div class="hero-visual" aria-label="Foto profissional de Gustavo Soares">
+                    <div class="hero-photo-shell">
+                        <div class="hero-photo-frame">
+                            <img src="./assets/img/logo-site.png" alt="Foto profissional de Gustavo Soares">
+                        </div>
+                        <div class="hero-skills-cloud" aria-label="Principais habilidades">
+                            <span class="skill-chip chip-html">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" aria-hidden="true">
+                                HTML5
+                            </span>
+                            <span class="skill-chip chip-css">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" aria-hidden="true">
+                                CSS3
+                            </span>
+                            <span class="skill-chip chip-js">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" aria-hidden="true">
+                                JavaScript
+                            </span>
+                            <span class="skill-chip chip-git">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" aria-hidden="true">
+                                Git
+                            </span>
+                            <span class="skill-chip chip-figma">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="" aria-hidden="true">
+                                Figma
+                            </span>
+                            <span class="skill-chip chip-canva">
+                                <img src="./assets/img/canva-logo.svg" alt="" aria-hidden="true">
+                                Canva
+                            </span>
+                        </div>
+                        <div class="hero-status-card">
+                            <span class="status-dot" aria-hidden="true"></span>
+                            Disponível para projetos
+                        </div>
                     </div>
                 </div>
                 <div class="neon-accents" aria-hidden="true"></div>
@@ -115,17 +146,17 @@
                 <div class="about-panel about-skills reveal"> <!-- Panel 2: Skills -->
                     <h3 class="panel-title">Habilidades</h3>
                     <ul class="skills-grid">
-                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 icon"><span>HTML5</span></li>
-                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 icon"><span>CSS3</span></li>
-                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript icon"><span>JavaScript</span></li>
-                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg" alt="Netlify icon"><span>Netlify</span></li>
-                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma icon"><span>Figma</span></li>
-                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git icon"><span>Git</span></li>
-                        <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub icon" class="icon-invert"><span>GitHub</span></li>
-                        <li><img src="./assets/img/canva-logo.svg" alt="Canva icon"><span>Canva</span></li>
-                        <li><img src="https://raw.githubusercontent.com/photopea/photopea/master/logo.svg" alt="Photopea icon"><span>Photopea</span></li>
-                        <li class="skill-soft"><span>Lógica de Programação</span></li>
-                        <li class="skill-soft"><span>Resolução de Problemas</span></li>
+                        <li class="reveal"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 icon"><span>HTML5</span></li>
+                        <li class="reveal"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 icon"><span>CSS3</span></li>
+                        <li class="reveal"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript icon"><span>JavaScript</span></li>
+                        <li class="reveal"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg" alt="Netlify icon"><span>Netlify</span></li>
+                        <li class="reveal"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma icon"><span>Figma</span></li>
+                        <li class="reveal"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git icon"><span>Git</span></li>
+                        <li class="reveal"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub icon" class="icon-invert"><span>GitHub</span></li>
+                        <li class="reveal"><img src="./assets/img/canva-logo.svg" alt="Canva icon"><span>Canva</span></li>
+                        <li class="reveal"><img src="https://raw.githubusercontent.com/photopea/photopea/master/logo.svg" alt="Photopea icon"><span>Photopea</span></li>
+                        <li class="reveal skill-soft"><span>Lógica de Programação</span></li>
+                        <li class="reveal skill-soft"><span>Resolução de Problemas</span></li>
                     </ul>
                 </div>
             </div>
@@ -145,9 +176,9 @@
                         <img src="./assets/img/service-social-media.jpg" alt="Visual premium representando design para social media" loading="lazy">
                     </div>
                     <div class="service-content">
-                        <span>01</span>
+                        <span>01 · Social Media</span>
                         <h3>Design para social media</h3>
-                        <p>Artes para posts, anúncios e divulgação com visual mais profissional, identidade consistente e foco em chamar atenção rápido.</p>
+                        <p>Conteúdo visual com identidade forte, acabamento refinado e comunicação clara para aumentar autoridade e atratividade da sua marca.</p>
                         <a class="service-cta" href="https://wa.me/5598991856123?text=Ol%C3%A1%2C%20Gustavo.%20Quero%20pedir%20um%20servi%C3%A7o%20de%20design%20para%20social%20media." target="_blank" rel="noopener">Pedir serviço</a>
                     </div>
                 </div>
@@ -156,9 +187,9 @@
                         <img src="./assets/img/service-landing-pages.jpg" alt="Visual premium representando criação de landing pages" loading="lazy">
                     </div>
                     <div class="service-content">
-                        <span>02</span>
+                        <span>02 · Conversão</span>
                         <h3>Landing pages</h3>
-                        <p>Páginas diretas para apresentar uma oferta, explicar valor, destacar diferenciais e conduzir o visitante para o contato.</p>
+                        <p>Estruturas limpas, visual premium e mensagem focada em conversão para apresentar sua oferta com clareza e confiança.</p>
                         <a class="service-cta" href="https://wa.me/5598991856123?text=Ol%C3%A1%2C%20Gustavo.%20Quero%20pedir%20uma%20landing%20page." target="_blank" rel="noopener">Pedir serviço</a>
                     </div>
                 </div>
@@ -167,9 +198,9 @@
                         <img src="./assets/img/service-forms.jpg" alt="Visual premium representando formulários digitais" loading="lazy">
                     </div>
                     <div class="service-content">
-                        <span>03</span>
+                        <span>03 · Fluxo</span>
                         <h3>Formulários</h3>
-                        <p>Formulários de contato, captação, briefing e solicitação de serviços com boa aparência, clareza e experiência simples.</p>
+                        <p>Experiências suaves e profissionais para captação, briefings e contato, com organização visual e navegação intuitiva.</p>
                         <a class="service-cta" href="https://wa.me/5598991856123?text=Ol%C3%A1%2C%20Gustavo.%20Quero%20pedir%20um%20formul%C3%A1rio%20digital." target="_blank" rel="noopener">Pedir serviço</a>
                     </div>
                 </div>
@@ -178,9 +209,9 @@
                         <img src="./assets/img/service-invitations.jpg" alt="Visual premium representando convites digitais" loading="lazy">
                     </div>
                     <div class="service-content">
-                        <span>04</span>
+                        <span>04 · Eventos</span>
                         <h3>Convites digitais</h3>
-                        <p>Convites modernos para eventos, aniversários e ocasiões especiais, com visual personalizado e apresentação marcante.</p>
+                        <p>Pequenos produtos visuais com acabamento sofisticado, elegância e personalidade para eventos, lançamentos e ocasiões especiais.</p>
                         <a class="service-cta" href="https://wa.me/5598991856123?text=Ol%C3%A1%2C%20Gustavo.%20Quero%20pedir%20um%20convite%20digital." target="_blank" rel="noopener">Pedir serviço</a>
                     </div>
                 </div>
@@ -194,12 +225,16 @@
             <h2 class="reveal">Projetos Selecionados</h2>
             
             <!-- Controles de projetos (ícone + filtros) -->
-            <div class="project-controls reveal">
-                <div class="filter-icon-wrapper" aria-hidden="true">
-                    <!-- Ícone Profissional de Filtros (Sliders) -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
-                </div>
-                <div class="project-filters">
+            <div class="project-controls reveal" data-open="false">
+                <button class="filter-toggle" type="button" aria-expanded="false" aria-controls="project-filters" aria-label="Abrir filtros de projetos">
+                    <span class="filter-icon-wrapper" aria-hidden="true">
+                        <!-- Ícone Profissional de Filtros (Sliders) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+                    </span>
+                    <span class="filter-label">Filtrar</span>
+                </button>
+                <div id="project-filters" class="project-filters">
+                    <button class="filter-btn active" data-filter="" aria-pressed="true">Todos <span class="filter-count">0</span></button>
                     <button class="filter-btn" data-filter="real" aria-pressed="false">Projetos reais <span class="filter-count">0</span></button>
                     <button class="filter-btn" data-filter="training" aria-pressed="false">Acadêmicos <span class="filter-count">0</span></button>
                 </div>
